@@ -1,8 +1,8 @@
 <?php
 
 require_once('DatabaseConnection.php');
-require_once('../model/Task.php');
-require_once('../model/Response.php');
+require_once('../Models/Task.php');
+require_once('../Models/Response.php');
 
 try {
     $writeDB = DatabaseConnection::connectWriteDB();
