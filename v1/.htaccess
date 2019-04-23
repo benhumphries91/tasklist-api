@@ -1,1 +1,10 @@
-php_flag display_errors on
+
+
+RewriteEngine On
+# not for directories
+RewriteCond %{REQUEST_FILENAME} !-d
+# not for files
+RewriteCond %{REQUEST_FILENAME} !-f
+
+### API Pretty Path Rewrites
+RewriteRule ^tasks/([0-9]+)$ controller/Task.php?taskid=$1 [L]
