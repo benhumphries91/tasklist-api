@@ -2,7 +2,7 @@
 
 class Response {
 
-    // use of _ before vaiable name is is to used to define instance varaibles
+    // use of _ before variable name is is to used to define instance varaibles
     private $_success;
     private $_httpStatusCode;
     private $_messages = array();
