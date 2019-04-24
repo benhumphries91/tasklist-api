@@ -7,4 +7,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
 ### API Pretty Path Rewrites
-RewriteRule ^tasks/([0-9]+)$ controller/Task.php?taskid=$1 [L]
+RewriteRule ^tasks/([0-9]+)$ Controllers/Task.php?taskid=$1 [L]

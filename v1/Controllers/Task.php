@@ -81,15 +81,45 @@ if(array_key_exists('taskid', $_GET)) {
             $response = new Response();
             $response->setHttpStatusCode(500);
             $response->setSuccess(false);
-            $response->addMessage('Failed to get Tasks');
+            $response->addMessage('Failed To Get Tasks');
             $response->send();
             exit();
         }
     }
-    elseif($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+    elseif($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+        try {
+            $query = $writeDB->prepare('delete from tasks where id = :taskid');
+            $query->bindParam(':taskid', $taskid, PDO::PARAM_INT);
+            $query->execute();
 
+            $rowCount = $query->rowCount();
+
+            if($rowCount === 0) {
+                $response = new Response();
+                $response->setHttpStatusCode(404);
+                $response->setSuccess(false);
+                $response->addMessage('Task Not Found');
+                $response->send();
+                exit();
+            }
+
+            $response = new Response();
+            $response->setHttpStatusCode(200);
+            $response->setSuccess(true);
+            $response->addMessage('Task With Task ID ' . $taskid . ' Has Been Deleted');
+            $response->send();
+            exit();
+        }
+        catch(PDOException $ex) {
+            $response = new Response();
+            $response->setHttpStatusCode(500);
+            $response->setSuccess(false);
+            $response->addMessage('Failed To Delete Task');
+            $response->send();
+            exit();
+        }
     }
-    elseif($_SERVER['REQUEST_METHOD'] == 'PATCH') {
+    elseif($_SERVER['REQUEST_METHOD'] === 'PATCH') {
 
     }
     else {
