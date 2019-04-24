@@ -8,3 +8,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 ### API Pretty Path Rewrites
 RewriteRule ^tasks/([0-9]+)$ Controllers/Task.php?taskid=$1 [L]
+RewriteRule ^tasks/complete$ Controllers/Task.php?completed=Y [L]
+RewriteRule ^tasks/incomplete$ Controllers/Task.php?completed=N [L]
